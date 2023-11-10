@@ -16,7 +16,7 @@ The contract facilitates the process of depositing tokens into a liquidity pool.
 - **LP Token Claim**: Users can claim their LP tokens from the contract, which then transfers the LP tokens to the user.
 
 
-**Function Documentation**:
+## Function Documentation**:
 
 1. **Constructor**: This function is called when the contract is deployed. It initializes the contract with the addresses of tokenA, tokenB, and the LP token, the amounts for the tokenA to tokenB ratio, the total tokenA threshold, and the address of the liquidity pool.
 
