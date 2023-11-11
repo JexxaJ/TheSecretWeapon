@@ -33,4 +33,4 @@ Breakdown of each function in the contract:
 
 5. **bytesToUint**: This is a helper function that converts bytes to an unsigned integer. This function is used to convert the data returned by the `addLiquidity` function (assumed to be the amount of LP tokens minted) into a format that can be added to the depositor's LP tokens.
 
-This contract provides a way for users to deposit tokens into a liquidity pool and claim LP tokens, while ensuring that the ratio of tokens deposited matches a predefined ratio. It's a fundamental building block for decentralized finance (DeFi) applications on the Ethereum blockchain. 😊
+This contract provides a way for users to deposit tokens into a liquidity pool and claim LP tokens, while ensuring that the ratio of tokens deposited matches a predefined ratio.😊
