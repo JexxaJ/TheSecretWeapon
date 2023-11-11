@@ -1,3 +1,6 @@
+# Warning this has not been tested or audited
+This is a working example to build upon only.
+
 ## LP Safe Guard
 Designed to be used as a means to trustlessly get a group of depositors to pledge adding liquidity to an LP pool.
 The contract facilitates the process of depositing tokens into a liquidity pool. 
