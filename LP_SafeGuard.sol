@@ -22,6 +22,7 @@ contract DepositContract {
     }
 
     mapping(address => Depositor) public depositors;
+    address[] public depositorAddresses; // New array to store depositor addresses
 
     constructor(
         address _tokenA,
@@ -50,6 +51,13 @@ contract DepositContract {
             tokenB.transferFrom(msg.sender, address(this), _tokenB_amount),
             "Transfer of tokenB failed"
         );
+
+        if (
+            depositors[msg.sender].tokenA_deposited == 0 &&
+            depositors[msg.sender].tokenB_deposited == 0
+        ) {
+            depositorAddresses.push(msg.sender); // Add new depositor address to the array
+        }
 
         depositors[msg.sender].tokenA_deposited += _tokenA_amount;
         depositors[msg.sender].tokenB_deposited += _tokenB_amount;
@@ -98,9 +106,9 @@ contract DepositContract {
             "Threshold not met"
         );
 
-        // Iterate over the depositors mapping
-        for (uint i = 0; i < depositors.length; i++) {
-            address depositor = depositors[i];
+        // Iterate over the depositorAddresses array
+        for (uint i = 0; i < depositorAddresses.length; i++) {
+            address depositor = depositorAddresses[i];
 
             // Calculate the amounts to be deposited to the liquidity pool
             uint256 tokenA_to_deposit = depositors[depositor].tokenA_deposited;
@@ -139,7 +147,7 @@ contract DepositContract {
 
                 // Assume the addLiquidity function returns the amount of LP tokens minted
                 // Update the depositor's LP tokens
-                depositors[depositor].lp_tokens += msg.data; // LP tokens are tracked by amount
+                depositors[depositor].lp_tokens += bytesToUint(msg.data); // LP tokens are tracked by amount
             }
         }
     }
@@ -156,5 +164,13 @@ contract DepositContract {
             lpToken.transfer(msg.sender, lp_tokens),
             "Transfer of LP tokens failed"
         );
+    }
+
+    function bytesToUint(bytes memory b) private pure returns (uint256) {
+        uint256 number;
+        for (uint i = 0; i < b.length; i++) {
+            number = number + uint8(b[i]) * (2 ** (8 * (b.length - (i + 1))));
+        }
+        return number;
     }
 }
