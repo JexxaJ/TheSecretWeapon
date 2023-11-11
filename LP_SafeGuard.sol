@@ -4,16 +4,16 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract DepositContract {
-    ERC20 public tokenA;
-    ERC20 public tokenB;
-    ERC20 public lpToken; // The LP token
-    uint256 public tokenA_amount;
-    uint256 public tokenB_amount;
-    uint256 public total_tokenA_threshold;
+    ERC20 public tokenA = ERC20(0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39);
+    ERC20 public tokenB = ERC20(0x5A9780Bfe63f3ec57f01b087cD65BD656C9034A8);
+    ERC20 public lpToken = ERC20(0x5aDbcC7885311Fc621B3Ac59D685b355Ae4507F5); // The LP token
+    uint256 public tokenA_amount = 99;
+    uint256 public tokenB_amount = 1;
+    uint256 public total_tokenA_threshold = 700000000;
     uint256 public total_tokenA_deposited;
     uint256 public total_tokenB_deposited;
     uint256 public deadline;
-    address public liquidityPool;
+    address public liquidityPool = 0x5aDbcC7885311Fc621B3Ac59D685b355Ae4507F5;
 
     struct Depositor {
         uint256 tokenA_deposited;
@@ -23,24 +23,6 @@ contract DepositContract {
 
     mapping(address => Depositor) public depositors;
     address[] public depositorAddresses; // New array to store depositor addresses
-
-    constructor(
-        address _tokenA,
-        address _tokenB,
-        address _lpToken,
-        uint256 _tokenA_amount,
-        uint256 _tokenB_amount,
-        uint256 _total_tokenA_threshold,
-        address _liquidityPool
-    ) {
-        tokenA = ERC20(_tokenA);
-        tokenB = ERC20(_tokenB);
-        lpToken = ERC20(_lpToken); // Initialize the LP token
-        tokenA_amount = _tokenA_amount;
-        tokenB_amount = _tokenB_amount;
-        total_tokenA_threshold = _total_tokenA_threshold;
-        liquidityPool = _liquidityPool;
-    }
 
     function deposit(uint256 _tokenA_amount, uint256 _tokenB_amount) public {
         require(
