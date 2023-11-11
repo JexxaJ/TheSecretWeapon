@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract DepositContract {
     ERC20 public tokenA;
     ERC20 public tokenB;
+    ERC20 public lpToken; // The LP token
     uint256 public tokenA_amount;
     uint256 public tokenB_amount;
     uint256 public total_tokenA_threshold;
@@ -26,6 +27,7 @@ contract DepositContract {
     constructor(
         address _tokenA,
         address _tokenB,
+        address _lpToken,
         uint256 _tokenA_amount,
         uint256 _tokenB_amount,
         uint256 _total_tokenA_threshold,
@@ -33,6 +35,7 @@ contract DepositContract {
     ) {
         tokenA = ERC20(_tokenA);
         tokenB = ERC20(_tokenB);
+        lpToken = ERC20(_lpToken); // Initialize the LP token
         tokenA_amount = _tokenA_amount;
         tokenB_amount = _tokenB_amount;
         total_tokenA_threshold = _total_tokenA_threshold;
