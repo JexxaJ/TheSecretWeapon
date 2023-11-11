@@ -4,16 +4,16 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract DepositContract {
-    ERC20 public tokenA = ERC20(0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39);
-    ERC20 public tokenB = ERC20(0x5A9780Bfe63f3ec57f01b087cD65BD656C9034A8);
-    ERC20 public lpToken = ERC20(0x5aDbcC7885311Fc621B3Ac59D685b355Ae4507F5); // The LP token
-    uint256 public tokenA_amount = 99;
-    uint256 public tokenB_amount = 1;
-    uint256 public total_tokenA_threshold = 700000000;
+    ERC20 public tokenA = ERC20(0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39); // Currently Set to HEX Replace with the tokenA address
+    ERC20 public tokenB = ERC20(0x5A9780Bfe63f3ec57f01b087cD65BD656C9034A8); // Currently Set to COM Replace with the tokenB address
+    ERC20 public lpToken = ERC20(0x5aDbcC7885311Fc621B3Ac59D685b355Ae4507F5); // Replace with the LP token address
+    uint256 public tokenA_amount = 99; // Set to desired tokenA amount to set ratio
+    uint256 public tokenB_amount = 1; // Set to desired tokenB amount to set ratio
+    uint256 public total_tokenA_threshold = 700000000; //Currently Set to 7Mil Hex, set as required
     uint256 public total_tokenA_deposited;
     uint256 public total_tokenB_deposited;
     uint256 public deadline;
-    address public liquidityPool = 0x5aDbcC7885311Fc621B3Ac59D685b355Ae4507F5;
+    address public liquidityPool = 0x5aDbcC7885311Fc621B3Ac59D685b355Ae4507F5; //Current set to HEX/COM LP pool on pulseX, set as required for desired pool
 
     struct Depositor {
         uint256 tokenA_deposited;
